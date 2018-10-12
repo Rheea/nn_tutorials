@@ -50,9 +50,10 @@ EPOCH_COUNT = 100000
 sess = tf.Session()
 tf.global_variables_initializer().run(session=sess)
 for i in range(EPOCH_COUNT):
+    sess.run(train_step, feed_dict={X: random_spots, Y: is_inside_circle})
     if i%100 == 0:
-    	print('Loss after %d runs: %f' % (i, sess.run(loss, feed_dict={X: random_spots, Y: is_inside_circle})))
-	sess.run(train_step, feed_dict={X: random_spots, Y: is_inside_circle})
+    	print('Loss after %d runs: %f' % (i, sess.run(loss, feed_dict={X: random_spots, Y: is_inside_circle})))                	
+    
 print('Final loss after %d runs: %f' % (i, sess.run(loss, feed_dict={X: random_spots, Y: is_inside_circle})))
 
 
