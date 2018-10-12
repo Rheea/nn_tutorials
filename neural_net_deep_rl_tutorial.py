@@ -5,27 +5,22 @@ Created on Wed Oct  3 14:55:42 2018
 
 @author: aradulescu
 """
-
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 import tensorflow as tf
-import numpy as np
-import matplotlib.pyplot as pls
-import matplotlib.cm as cm
-import matplotlib.patches as mpatches
+message = tf.constant('Welcome to the exciting world of Deep Neural Networks!')
+v_1 = tf.constant([1,2,3,4]) 
+v_2 = tf.constant([2,1,5,3]) 
+v_add = tf.add(v_1,v_2)
 
-def tf_reset():
-    try:
-        sess.close()
-    except:
-        pass
-    tf.reset_default_graph()
-    return tf.Session()
+#sess = tf.Session() 
+#print(ses.run(tv_add)) 
+#sess.close()
 
-
-sess = tf_reset()
-
-a = tf.constant(1.0)
-b = tf.constant(2.0)
-c = a + b
-c_run = sess.run(c)
-
-print('c = {0}'.format(c_run))
+#with tf.Session() as sess:
+#     print(sess.run(message).decode())
+#     print(sess.run(v_add))
+     
+sess = tf.InteractiveSession() 
+print(v_add.eval()) 
+sess.close()     
